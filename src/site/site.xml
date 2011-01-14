@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/DECORATION/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0  http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-stylus-skin</artifactId>
+    <version>1.2</version>
+  </skin>
+  <bannerLeft>
+    <name>Maven Resource Bundle Check Plugin</name>
+    <src>maven-rbc-plugin.png</src>
+    <href>${project.url}</href>
+  </bannerLeft>
+  <version position="right"/>
+  <publishDate position="right"/>
+  <poweredBy>
+    <logo name="Maven" href="http://maven.apache.org/"
+    img="http://maven.apache.org/images/logos/maven-feather.png"/>
+  </poweredBy>
+  <body>
+    <breadcrumbs>
+      <item name="labs.consol.de" href="http://labs.consol.de/"/>
+      <item name="Maven" href="http://labs.consol.de/maven/"/>
+    </breadcrumbs>
+    <menu name="Overview">
+      <item name="Introduction" href="index.html"/>
+      <item name="Goals" href="plugin-info.html"/>
+    </menu>
+    <menu name="${project.name}" ref="reports" inherit="bottom" collapse="true"/>
+  </body>
+</project>
+

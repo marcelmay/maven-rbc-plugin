@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.metacube.maven</groupId>
+  <artifactId>maven-rbc-plugin-test</artifactId>
+  <packaging>jar</packaging>
+  <version>@mavenRbcPluginVersion@</version>
+  <name>Resource Bundle Check Test</name>
+
+  <prerequisites>
+    <maven>2.2.1</maven>
+  </prerequisites>
+  <licenses>
+    <license>
+      <name>Apache 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <failIfNoTests>false</failIfNoTests>
+  </properties>
+
+  <dependencies>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>net.metacube.maven</groupId>
+        <artifactId>maven-rbc-plugin</artifactId>
+        <version>@mavenRbcPluginVersion@</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-site-plugin</artifactId>
+        <!-- For maven 2.2.x only! -->
+        <version>2.2</version>
+        <executions>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>site</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <reporting>
+    <excludeDefaults>true</excludeDefaults>
+    <plugins>
+      <plugin>
+        <groupId>net.metacube.maven</groupId>
+        <artifactId>maven-rbc-plugin</artifactId>
+        <version>@mavenRbcPluginVersion@</version>
+      </plugin>
+    </plugins>
+  </reporting>
+
+</project>

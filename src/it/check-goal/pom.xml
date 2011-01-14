@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.metacube.maven</groupId>
+  <artifactId>maven-rbc-plugin-test</artifactId>
+  <packaging>jar</packaging>
+  <version>@mavenRbcPluginVersion@</version>
+  <name>Resource Bundle Check Test</name>
+
+  <licenses>
+    <license>
+      <name>Apache 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <failIfNoTests>false</failIfNoTests>
+  </properties>
+
+  <dependencies>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>net.metacube.maven</groupId>
+        <artifactId>maven-rbc-plugin</artifactId>
+        <version>@mavenRbcPluginVersion@</version>
+        <executions>
+          <execution>
+            <id>check</id>
+            <phase>test</phase>
+          <goals>
+            <goal>check</goal>
+          </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <disabledChecks>
+            <param>empty value check</param>
+          </disabledChecks>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

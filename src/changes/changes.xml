@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+ See the documentation at http://maven.apache.org/plugins/maven-changes-plugin/usage.html
+
+ Possible action types: add, fix, remove, update
+
+ For third party updates, please add a link to the release notes!
+ -->
+<document>
+  <properties>
+    <title>Changes</title>
+  </properties>
+  <body>
+    <release version="0.4" date="?.?.2011" description="Release 0.4">
+      <action type="add" dev="mm">
+        Added reporting goal.
+      </action>
+      <action type="add" dev="mm">
+        Added integration test for plugin.
+      </action>
+      <action type="add" dev="mm">
+        Requires Maven 2.2.1+
+      </action>
+      <action type="update" dev="mm">
+        Updated rscbundlecheck from 1.30 to 1.31
+      </action>
+      <action type="update" dev="mm">
+        Updated gmaven from 1.0 to 1.3
+      </action>
+      <action type="update" dev="mm">
+        Updated groovy from 1.6.0 to 1.7.6, embedded Ant is version 1.8.2
+      </action>
+    </release>
+    <release version="0.3" date="22.07.2009" description="Release 0.3">
+      <action type="add" dev="mm">
+        Warn about missing resource bundle files for locales. Locales get auto detected by
+        collecting locales from resource file names.
+      </action>
+      <action type="update" dev="mm">
+        Updated gmaven to 1.0
+      </action>
+      <action type="update" dev="mm">
+        Updated maven-site-plugin from 2.0 to 2.0.1
+      </action>
+    </release>
+    <release version="0.2" date="12.06.2009" description="Release 0.2">
+      <action type="add" dev="mm">
+        Fixed bundle wise checking, previously all resource files were checked.
+      </action>
+    </release>
+    <release version="0.1" date="15.05.2009" description="Initial release 0.1">
+      <action type="add" dev="mm">
+        Initial release, based on
+        <![CDATA[<a href="http://rscbundlecheck.sourceforge.net/">Rscbundlecheck</a>]]>.
+      </action>
+    </release>
+  </body>
+</document>
