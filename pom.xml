@@ -20,9 +20,8 @@
   </properties>
 
   <scm>
-    <connection>scm:svn:https://svn.consol.de/svn/mm/maven-rbc-plugin/trunk</connection>
-    <developerConnection>scm:svn:https://svn.consol.de/svn/mm/maven-rbc-plugin/trunk
-    </developerConnection>
+    <connection>scm:git:git://github.com/marcelmay/maven-rbc-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:marcelmay/maven-rbc-plugin.git</developerConnection>
     <url>http://labs.consol.de/projects/maven/maven-rbc-plugin</url>
   </scm>
 
