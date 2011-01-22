@@ -10,7 +10,7 @@ What is it good for?
 * Runs various checks on resource files, such as missing language resources files or missing resource entries
 * Can create a Maven report of the check results
 
-Check out the [homepage][hp] for details.
+Check out the [plugin web site][site] for details.
 
 [rscbundlecheck.sf.net]: http://rscbundlecheck.sourceforge.net
-[hp]: http://labs.consol.de/projects/maven/maven-rbc-plugin/
+[site]: http://labs.consol.de/projects/maven/maven-rbc-plugin/
