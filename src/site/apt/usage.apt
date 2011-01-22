@@ -6,20 +6,19 @@
  
 Using the Maven Resource Bundle Check Plugin
 
-  The first step is configuring Maven with the repository containing the plugin:
+  The first step is configuring Maven with the repository containing the plugin.
+  Add the <pluginRepository> entry either to your {{{http://maven.apache.org/ref/2.2.1/maven-model/maven.html#class_pluginRepository}pom.xml}} or global {{{http://maven.apache.org/ref/2.2.1/maven-settings/settings.html#class_pluginRepository}settings.xml}}.
 
 ---
 <pluginRepository>
-  <repository>
-    <id>consol-labs-release</id>
-    <url>http://labs.consol.de/maven/repository/</url>
-    <snapshots>
-      <enabled>false</enabled>
-    </snapshots>
-    <releases>
-      <enabled>true</enabled>
-    </releases>
-  </repository>
+  <id>consol-labs-release</id>
+  <url>http://labs.consol.de/maven/repository/</url>
+  <snapshots>
+    <enabled>false</enabled>
+  </snapshots>
+  <releases>
+    <enabled>true</enabled>
+  </releases>
 </pluginRepository>
 ---
 
