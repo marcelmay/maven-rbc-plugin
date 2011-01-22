@@ -1,6 +1,9 @@
 package net.metacube.maven.rscbundlecheck
 
+import net.metacube.maven.rscbundlecheck.checks.IncompleteResourceBundleCheck
+import net.metacube.maven.rscbundlecheck.checks.RscBundleCheckWrapper
 import org.apache.maven.doxia.siterenderer.Renderer
+import org.apache.maven.model.FileSet
 import org.apache.maven.project.MavenProject
 import org.apache.maven.reporting.AbstractMavenReport
 
@@ -14,7 +17,94 @@ import org.apache.maven.reporting.AbstractMavenReport
  * @phase site
  */
 public class ReportResourceBundleMojo extends AbstractMavenReport {
-  @Delegate ResourceBundleMojoDelegate resourceBundleMojoDelegate = new ResourceBundleMojoDelegate()
+
+  /**
+   * The current project.
+   *
+   * @parameter expression="${project}"
+   * @required
+   * @readonly
+   */
+  private MavenProject project
+
+  /* === Config === */
+  /**
+   * Sort results when reporting.
+   *
+   * @parameter default-value='true'
+   */
+  private boolean sortResult
+  /**
+   * Be verbose.
+   *
+   * Automatically enabled when running mvn in debug mode.
+   *
+   * @parameter default-value='false'
+   */
+  private boolean verbose
+  /**
+   * Fail on error, such as missing resource key.
+   *
+   * @parameter default-value='false'
+   */
+  private boolean failOnError
+  /**
+   * Autodetects locales and warns in a resource file for a locale is missing.
+   *
+   * @parameter default-value='true'
+   */
+  private boolean warnOnIncompleteBundle
+  /**
+   * Fileset for scanning.
+   *
+   * Example:
+   * <pre><code>
+   * &lt;fileset&gt;
+   *   &lt;directory&gt;src/main/resources&lt;/directory&gt;
+   *   &lt;includes&gt;
+   *     &lt;include&gt;net/metacube/example/project/&#42;&#42;/&#42;.properties&lt;/include&gt;
+   *   &lt;/includes&gt;
+   * &lt;/fileset&gt;
+   * </code></pre>
+   * Note: Same rules as for includes apply for excludes
+   *
+   * @parameter
+   */
+  private FileSet fileset = new FileSet(directory: 'src/main/resources', includes: ['**/*.properties'])
+  /**
+   * Checks enabled.
+   *
+   * By default, all checks are enabled.
+   *
+   * <pre><code>
+   * &lt;enabledChecks&gt;
+   *   &lt;param&gt;&#42;&lt;/param&gt;
+   * &lt;/enabledChecks&gt;
+   * &lt;disabledChecks&gt;
+   *   &lt;!-- param&gt;allowed char key check&lt;/param --&gt;
+   *   &lt;!-- param&gt;unicode check&lt;/param --&gt;
+   *   &lt;param&gt;cross bundle check&lt;/param&gt;
+   *   &lt;!-- param&gt;duplicate key check&lt;/param --&gt;
+   *   &lt;!-- param&gt;empty key check&lt;/param --&gt;
+   *   &lt;!-- param&gt;empty value check&lt;/param --&gt;
+   *   &lt;!-- param&gt;messageformat check&lt;/param --&gt;
+   *   &lt;!-- param&gt;invalid char check&lt;/param --&gt;
+   *   &lt;!-- param&gt;line end check&lt;/param --&gt;
+   *   &lt;!-- param&gt;upper lower check&lt;/param --&gt;
+   *   &lt;!-- param&gt;invalid char check&lt;/param --&gt;
+   * &lt;/disabledChecks&gt;
+   * </code></pre>
+   *
+   * @parameter
+   */
+  private List enabledChecks = ['*']
+  /**
+   * Checks disabled.
+   *
+   * See         {@link #enabledChecks}
+   * @parameter
+   */
+  private List disabledChecks
 
   /**
    * @component
@@ -22,14 +112,6 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
    * @readonly
    */
   private Renderer siteRenderer
-  /**
-   * The directory where the report will be generated
-   *
-   * @parameter expression="${project.reporting.outputDirectory}"
-   * @required
-   * @readonly
-   */
-  private File outputDirectory
 
   protected void executeReport(Locale pLocale) {
     Map<Bundle, List<Issue>> bundleIssues = new TreeMap(executeChecks())
@@ -69,7 +151,7 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
     sink.sectionTitle2()
     sink.anchor anchorName(pBundle.basename)
     sink.anchor_()
-    sink.text pResBundle.getString('report.rbc.bundle.detail.entry')+' '+pBundle.basename
+    sink.text pResBundle.getString('report.rbc.bundle.detail.entry') + ' ' + pBundle.basename
     sink.sectionTitle2_()
 
     sink.table()
@@ -116,7 +198,7 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
         tableCell b.basename
       } else {
         sink.tableCell()
-        sink.link('#'+anchorName(b.basename))
+        sink.link('#' + anchorName(b.basename))
         sink.text b.basename
         sink.link_()
         sink.tableCell_()
@@ -206,7 +288,7 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
   }
 
   protected String getOutputDirectory() {
-    return outputDirectory.getAbsolutePath()
+    return getReportOutputDirectory().getAbsolutePath()
   }
 
   protected Renderer getSiteRenderer() {
@@ -231,5 +313,40 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
 
   private ResourceBundle getBundle(Locale locale) {
     return ResourceBundle.getBundle('rbc-report', locale, this.getClass().getClassLoader())
+  }
+
+  Map<Bundle, List<Issue>> executeChecks() {
+    // Scan for bundles
+    BundleScanner bScanner = new BundleScanner()
+    bScanner.scan(fileset)
+    log.info "Found ${bScanner.size()} bundles"
+    if (log.isDebugEnabled()) {
+      bScanner.getBundles().each { log.debug it.toString() }
+    }
+
+    // Build check configuration
+    BundleChecker checker = buildCheckerForConfiguration(bScanner)
+
+    // Run checks
+    Map<Bundle, List<Issue>> result = new HashMap()
+    bScanner.getBundles().each {
+      result.put(it, checker.check(it, new ArrayList<Issue>()))
+    }
+    result
+  }
+
+  BundleChecker buildCheckerForConfiguration(BundleScanner pScanner) {
+    BundleChecker bc = new BundleChecker(log: log)
+    bc.add(new RscBundleCheckWrapper(log: log,
+            fileset: fileset,
+            sortResult: sortResult,
+            verbose: verbose,
+            failOnError: failOnError,
+            enabledChecks: enabledChecks,
+            disabledChecks: disabledChecks).init())
+    if (warnOnIncompleteBundle) {
+      bc.add(new IncompleteResourceBundleCheck(log: log, locales: pScanner.locales))
+    }
+    return bc
   }
 }
