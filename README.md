@@ -22,16 +22,19 @@ Development
 -----------
 
 * Build the plugin
+
     mvn clean install
 
 * Build the site (and the optional example report)
 
     mvn clean install site -Psite,example-report
+
     mvn site:deploy -Psite
 
 * Release
 
     mvn release:prepare
+
     mvn release:perform
 
 Make sure you got the changes etc for the site updated previous to the release.
