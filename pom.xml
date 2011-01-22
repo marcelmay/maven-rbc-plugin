@@ -113,17 +113,6 @@
     </dependency>
   </dependencies>
 
-  <distributionManagement>
-    <repository>
-      <id>consol-labs-release</id>
-      <url>scpexe://labs.consol.de/home/maven-repository/www/htdocs/repository</url>
-    </repository>
-    <snapshotRepository>
-      <id>consol-labs-snapshots</id>
-      <url>scpexe://labs.consol.de/home/maven-repository/www/htdocs/snapshots-repository</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <build>
     <plugins>
       <plugin>
@@ -181,6 +170,14 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <releaseProfiles>dist-labs</releaseProfiles>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
@@ -229,12 +226,6 @@
     </profile>
     <profile>
       <id>site</id>
-      <distributionManagement>
-        <site>
-          <id>site-labs</id>
-          <url>scpexe://labs.consol.de/home/mm/www/htdocs/${project.groupId}/${project.artifactId}</url>
-        </site>
-      </distributionManagement>
       <build>
         <plugins>
           <plugin>
@@ -324,6 +315,24 @@
           </plugin>
         </plugins>
       </reporting>
+    </profile>
+    <profile>
+      <!-- Distribution to the target maven repo -->
+      <id>dist-labs</id>
+      <distributionManagement>
+        <repository>
+          <id>consol-labs-release</id>
+          <url>scpexe://labs.consol.de/home/maven-repository/www/htdocs/repository</url>
+        </repository>
+        <snapshotRepository>
+          <id>consol-labs-snapshots</id>
+          <url>scpexe://labs.consol.de/home/maven-repository/www/htdocs/snapshots-repository</url>
+        </snapshotRepository>
+        <site>
+          <id>site-labs</id>
+          <url>scpexe://labs.consol.de/home/mm/www/htdocs/${project.groupId}/${project.artifactId}</url>
+        </site>
+      </distributionManagement>
     </profile>
   </profiles>
 </project>
