@@ -1,0 +1,37 @@
+ ------
+ Introduction
+ ------
+ Marcel May
+ ------
+ 
+Maven Resource Bundle Check Plugin
+
+  The resource bundle check plugin runs some sanity checks on your resource files.
+  The plugin publishes the results as a report or prints any issues on the console.
+
+[example-report.png] Example Report
+
+  * Have a look at a generated {{{./rbc-example_report.html}example report}}
+
+  * Read the {{{./usage.html}usage}} documentation
+
+  * Check the {{{./plugin-info.html}plugin goals}} description
+
+  []
+
+  Under the hood the plugin uses
+ {{{http://rscbundlecheck.sourceforge.net/}ResourceCheck Ant tasks}}(RSBC) and extends it with additional checks. The plugin is written in {{{http://groovy.codehaus.org}Groovy}} using {{{http://gmaven.codehaus.org/}GMaven}}.
+
+Open tasks
+
+  * Support configuration of RSBC check parameters
+
+  * Re-implement RSBC check logic, to avoid wrapping?
+
+  * Apply for mojo sandbox?
+
+  []
+
+  Have fun -
+  Marcel
+

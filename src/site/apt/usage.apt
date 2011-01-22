@@ -1,17 +1,75 @@
-<project>
-  <body>
-    <menu name="Overview">
-      <item name="Introduction" href="index.html"/>
-      <item name="Goals" href="plugin-info.html"/>
-      <item name="Usage" href="usage.html"/>
-      <item name="FAQ" href="faq.html"/>
-    </menu>
-    <menu name="Examples">
-      <item name="Remove Report" href="examples/removeReport.html"/>
-      <item name="Target JDK" href="examples/targetJdk.html"/>
-      <item name="Using Rule Sets" href="examples/usingRuleSets.html"/>
-      <item name="Violation Checking" href="examples/violationChecking.html"/>
-    </menu>
-  </body>
-</project>
+ ------
+ Usage
+ ------
+ Marcel May
+ ------
+ 
+Using the Maven Resource Bundle Check Plugin
+
+  The first step is configuring Maven with the repository containing the plugin:
+
+---
+<pluginRepository>
+  <repository>
+    <id>consol-labs-release</id>
+    <url>http://labs.consol.de/maven/repository/</url>
+    <snapshots>
+      <enabled>false</enabled>
+    </snapshots>
+    <releases>
+      <enabled>true</enabled>
+    </releases>
+  </repository>
+</pluginRepository>
+---
+
+* Integrate as a report
+
+  Adding this to your <pom.xml> will generate you a report whenever you build the project site.
+
+---
+<reporting>
+  <plugins>
+    ...
+    <plugin>
+      <groupId>net.metacube.maven</groupId>
+      <artifactId>maven-rbc-plugin</artifactId>
+      <version>${project.version}</version>
+    </plugin>
+    ...
+  </plugins>
+</reporting>
+---
+   
+  Check the {{{./rbc-example_report.html}example report}} for a preview of what to expect.
+  Here is a screenshot of the example report:
+
+[example-report-only.png] Example report
+
+   For configuration details see the {{{./report-mojo.html} report goal}} description.
+
+* Integrate for direct invocation
+
+  This is suitable for running a quick check without the overhead of generating the report.
+  Simply add the plugin to your <build> section of your POM:
+
+---
+<build>
+  ...
+  <plugins>
+    <plugin>
+      <groupId>net.metacube.maven</groupId>
+      <artifactId>maven-rbc-plugin</artifactId>
+      <version>${project.version}</version>
+    </plugin>
+    ...
+  </plugins>
+</build>
+---
+
+  Now you can invoke the plugin using <mvn rbc:check> :
+
+[check-goal.png] Example invocation of check goal
+
+  For usage details see the {{{./check-mojo.html} check goal}} description.
 
