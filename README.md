@@ -12,7 +12,7 @@ What is it good for?
 
 Check out the [plugin web site][site] for details.
 
-![Example report][example_report]
+![Example report][example_report "Example report showing some check issues"]
 
 [rscbundlecheck.sf.net]: http://rscbundlecheck.sourceforge.net
 [site]: http://labs.consol.de/projects/maven/maven-rbc-plugin/
