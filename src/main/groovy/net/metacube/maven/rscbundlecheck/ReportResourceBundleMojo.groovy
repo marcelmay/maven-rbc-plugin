@@ -6,12 +6,15 @@ import org.apache.maven.doxia.siterenderer.Renderer
 import org.apache.maven.model.FileSet
 import org.apache.maven.project.MavenProject
 import org.apache.maven.reporting.AbstractMavenReport
+import org.codehaus.groovy.util.StringUtil
+import org.apache.commons.lang.StringUtils
+import org.apache.commons.lang.StringEscapeUtils
 
 /**
  * Creates a report for the check results.
  *
  * @author mm
- * @goal rbc-report
+ * @goal report
  * @requiresDependencyResolution compile
  * @threadSafe
  * @phase site
@@ -105,6 +108,13 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
    * @parameter
    */
   private List disabledChecks
+  /**
+   * Name of the report, as listed in the project reports menu.
+   * Useful when having multiple reports.
+   *
+   * @parameter default-value=''
+   */
+  private String name
 
   /**
    * @component
@@ -296,11 +306,11 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
   }
 
   public String getOutputName() {
-    return 'rbc'
+    return name?.length()? 'rbc-'+name.toLowerCase().replaceAll('[^a-zA-Z0-9]','_') : 'rbc'
   }
 
   public String getName(Locale locale) {
-    return getBundle(locale).getString('report.rbc.name')
+    return name?.length()>0? name : getBundle(locale).getString('report.rbc.name')
   }
 
   public String getDescription(Locale locale) {
