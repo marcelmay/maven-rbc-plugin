@@ -12,8 +12,8 @@ What is it good for?
 
 Check out the [plugin web site][site] for details.
 
-![Example report][example_report "Example report showing some check issues"]
+![Example report][example_report]
 
 [rscbundlecheck.sf.net]: http://rscbundlecheck.sourceforge.net
 [site]: http://labs.consol.de/projects/maven/maven-rbc-plugin/
-[example_report]: https://github.com/marcelmay/maven-rbc-plugin/raw/master/src/site/resources/example-report-only.png
+[example_report]: https://github.com/marcelmay/maven-rbc-plugin/raw/master/src/site/resources/example-report-only.png "Example report showing some check issues"
