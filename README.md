@@ -17,3 +17,21 @@ Check out the [plugin web site][site] for details.
 [rscbundlecheck.sf.net]: http://rscbundlecheck.sourceforge.net
 [site]: http://labs.consol.de/projects/maven/maven-rbc-plugin/
 [example_report]: https://github.com/marcelmay/maven-rbc-plugin/raw/master/src/site/resources/example-report-only.png "Example report showing some check issues"
+
+Development
+-----------
+
+* Build the plugin
+    mvn clean install
+
+* Build the site (and the optional example report)
+
+    mvn clean install site -Psite,example-report
+    mvn site:deploy -Psite
+
+* Release
+
+    mvn release:prepare
+    mvn release:perform
+
+Make sure you got the changes etc for the site updated previous to the release.
