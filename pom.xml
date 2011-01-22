@@ -305,5 +305,25 @@
         </plugins>
       </reporting>
     </profile>
+    <profile>
+      <id>example-report</id>
+      <reporting>
+        <plugins>
+          <plugin>
+            <groupId>net.metacube.maven</groupId>
+            <artifactId>maven-rbc-plugin</artifactId>
+            <configuration>
+              <name>Example report</name>
+              <fileset>
+                <directory>src/it/report-goal/src/main/resources</directory>
+                <includes>
+                  <include>**/*.properties</include>
+                </includes>
+              </fileset>
+            </configuration>
+          </plugin>
+        </plugins>
+      </reporting>
+    </profile>
   </profiles>
 </project>
