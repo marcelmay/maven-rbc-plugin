@@ -118,7 +118,7 @@ public class CheckResourceBundleMojo extends GroovyMojo {
         }
       }
       else {
-        log.warn 'Bundle ' + it.key.basename + ' has ' + it.value.size() + 'issue(s):'
+        log.warn 'Bundle ' + it.key.basename + ' has ' + it.value.size() + ' issue(s):'
         it.value.each {issue -> log.warn(' - ' + issue.description)
         }
       }
