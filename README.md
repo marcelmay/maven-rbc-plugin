@@ -25,6 +25,8 @@ Development
 
     mvn clean install
 
+  Make sure you got [Maven 3.0.3][maven_download] or higher.
+
 * Build the site (and the optional example report)
 
     mvn clean install site -Psite,example-report
@@ -38,3 +40,5 @@ Development
     mvn release:perform
 
 Make sure you got the changes etc for the site updated previous to the release.
+
+[maven_download]: http://maven.apache.org
