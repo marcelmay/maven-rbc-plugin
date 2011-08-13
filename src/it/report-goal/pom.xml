@@ -6,7 +6,7 @@
   <artifactId>maven-rbc-plugin-report-test</artifactId>
   <packaging>jar</packaging>
   <version>@mavenRbcPluginVersion@</version>
-  <name>Resource Bundle Check Test</name>
+  <name>Resource Bundle Report Test</name>
 
   <licenses>
     <license>
