@@ -8,9 +8,6 @@
   <version>@mavenRbcPluginVersion@</version>
   <name>Resource Bundle Check Test</name>
 
-  <prerequisites>
-    <maven>2.2.1</maven>
-  </prerequisites>
   <licenses>
     <license>
       <name>Apache 2.0</name>
