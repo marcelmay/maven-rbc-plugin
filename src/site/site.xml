@@ -28,7 +28,7 @@
       <item name="Usage" href="usage.html"/>
       <item name="Goals" href="plugin-info.html"/>
     </menu>
-    <menu name="${project.name}" ref="reports" inherit="bottom" collapse="true"/>
+    <menu name="${project.name}" ref="reports" inherit="bottom"/>
   </body>
 </project>
 
