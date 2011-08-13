@@ -7,7 +7,7 @@
 Using the Maven Resource Bundle Check Plugin
 
   The first step is configuring Maven with the repository containing the plugin.
-  Add the <pluginRepository> entry either to your {{{http://maven.apache.org/ref/2.2.1/maven-model/maven.html#class_pluginRepository}pom.xml}} or global {{{http://maven.apache.org/ref/2.2.1/maven-settings/settings.html#class_pluginRepository}settings.xml}}.
+  Add the <pluginRepository> entry either to your {{{http://maven.apache.org/ref/3.0.3/maven-model/maven.html#class_pluginRepository}pom.xml}} or global {{{http://maven.apache.org/ref/3.0.3/maven-settings/settings.html#class_pluginRepository}settings.xml}}.
 
 ---
 <pluginRepository>
@@ -25,6 +25,9 @@ Using the Maven Resource Bundle Check Plugin
 * Integrate as a report
 
   Adding this to your <pom.xml> will generate you a report whenever you build the project site.
+  See {{{http://maven.apache.org/plugins/maven-site-plugin/maven-3.html#Configuration_formats}Maven Site Plugin 3.0.x}} configuration guide for details, such as Maven 3 preferred style configuration.
+
+  Old configuration (Maven 2 & 3):
 
 ---
 <reporting>

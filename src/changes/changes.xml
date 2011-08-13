@@ -12,6 +12,11 @@
     <title>Changes</title>
   </properties>
   <body>
+    <release version="0.5" date="??.??.2011" description="Release 0.5">
+      <action type="update" dev="mm">
+        Updated plugin to Maven 3 dependencies.
+      </action>
+    </release>
     <release version="0.4" date="22.01.2011" description="Release 0.4">
       <action type="update" dev="mm">
         Updated docs and added screenshots.

@@ -32,8 +32,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-site-plugin</artifactId>
-        <!-- For maven 2.2.x only! -->
-        <version>2.2</version>
+        <version>3.0</version>
         <executions>
           <execution>
             <id>report</id>
