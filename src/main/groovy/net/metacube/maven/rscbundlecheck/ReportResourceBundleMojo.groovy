@@ -6,9 +6,6 @@ import org.apache.maven.doxia.siterenderer.Renderer
 import org.apache.maven.model.FileSet
 import org.apache.maven.project.MavenProject
 import org.apache.maven.reporting.AbstractMavenReport
-import org.codehaus.groovy.util.StringUtil
-import org.apache.commons.lang.StringUtils
-import org.apache.commons.lang.StringEscapeUtils
 
 /**
  * Creates a report for the check results.
@@ -161,7 +158,10 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
     sink.sectionTitle2()
     sink.anchor anchorName(pBundle.basename)
     sink.anchor_()
-    sink.text pResBundle.getString('report.rbc.bundle.detail.entry') + ' ' + pBundle.basename
+    sink.text(pResBundle.getString('report.rbc.bundle.detail.entry') + ' ' + pBundle.basename
+        + ' (' + pIssues.size() + ' '
+        + (pIssues.size()>1 ? pResBundle.getString('report.rbc.bundle.detail.issues') : pResBundle.getString('report.rbc.bundle.detail.issue') )
+        + ')')
     sink.sectionTitle2_()
 
     sink.table()
