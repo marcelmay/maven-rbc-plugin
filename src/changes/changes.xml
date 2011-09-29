@@ -13,6 +13,9 @@
   </properties>
   <body>
     <release version="0.5" date="??.??.2011" description="Release 0.5">
+      <action type="update" dev="mm">
+        Updated org.codehaus.plexus:plexus-utils to 3.0 .
+      </action>
       <action type="add" dev="mm">
         Added number of issues to report bundle details title.
       </action>
