@@ -31,7 +31,7 @@ Development
 
     mvn clean install site -Psite,example-report
 
-    mvn site:deploy -Psite
+    mvn site:deploy -Psite,dist-labs
 
 * Release
 
