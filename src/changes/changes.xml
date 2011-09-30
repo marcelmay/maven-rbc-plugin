@@ -12,7 +12,9 @@
     <title>Changes</title>
   </properties>
   <body>
-    <release version="0.5" date="??.??.2011" description="Release 0.5">
+    <release version="0.6" date="??.??.2011" description="Release 0.6">
+    </release>
+    <release version="0.5" date="30.09.2011" description="Release 0.5">
       <action type="fix" dev="mm">
         Locales missing from report.
       </action>
