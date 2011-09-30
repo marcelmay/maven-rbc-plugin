@@ -103,11 +103,17 @@
       <artifactId>plexus-utils</artifactId>
       <version>3.0</version>
     </dependency>
-
     <dependency>
       <groupId>net.sf.rscbundlecheck</groupId>
       <artifactId>rscbundlecheck</artifactId>
       <version>1.31</version>
+    </dependency>
+    <!-- Testing -->
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.2.1</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -135,10 +141,8 @@
             <goals>
               <goal>generateStubs</goal>
               <goal>compile</goal>
-              <!--
               <goal>generateTestStubs</goal>
               <goal>testCompile</goal>
-              -->
             </goals>
           </execution>
         </executions>
@@ -167,6 +171,15 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.9</version>
+        <configuration>
+          <failIfNoTests>false</failIfNoTests>
+          <workingDirectory>${project.build.directory}</workingDirectory>
+          <argLine>-Xmx256m -Xms256m -Dfile.encoding=UTF8 -Djava.awt.headless=true</argLine>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

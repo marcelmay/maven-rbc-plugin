@@ -12,12 +12,7 @@ public class Bundle implements Comparable {
   Set<String> locales = new HashSet()
 
   public String toString() {
-    StringBuilder b = new StringBuilder('{basename=')
-    b.append(basename).append(', files=<')
-    for(f in files) {
-      b.append(' ').append(f)
-    }
-    return b.append(' >}').toString()
+    '{basename='+basename+', files='+files+', locales='+locales+'}'
   }
 
   int compareTo(Object o) {
