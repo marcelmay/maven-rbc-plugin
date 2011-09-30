@@ -349,6 +349,15 @@
           <url>scpexe://labs.consol.de/home/mm/www/htdocs/${project.groupId}/${project.artifactId}</url>
         </site>
       </distributionManagement>
+      <build>
+        <extensions>
+          <extension>
+            <groupId>org.apache.maven.wagon</groupId>
+            <artifactId>wagon-ssh-external</artifactId>
+            <version>2.0</version>
+          </extension>
+        </extensions>
+      </build>
     </profile>
   </profiles>
 </project>
