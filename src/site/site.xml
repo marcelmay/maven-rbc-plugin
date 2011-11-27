@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0  http://maven.apache.org/xsd/decoration-1.0.0.xsd">
   <skin>
     <groupId>org.apache.maven.skins</groupId>
-    <artifactId>maven-stylus-skin</artifactId>
-    <version>1.2</version>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>1.0</version>
   </skin>
   <bannerLeft>
     <name>Maven Resource Bundle Check Plugin</name>
