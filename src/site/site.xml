@@ -19,7 +19,7 @@
  
   <bannerLeft>
     <name>Maven Resource Bundle Check Plugin</name>
-    <src>maven-rbc-plugin.png</src>
+    <src>rbc-maven-plugin.png</src>
     <href>${project.url}</href>
   </bannerLeft>
   <version position="right"/>

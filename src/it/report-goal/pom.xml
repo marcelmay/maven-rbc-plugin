@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.metacube.maven</groupId>
-  <artifactId>maven-rbc-plugin-report-test</artifactId>
+  <artifactId>rbc-maven-plugin-report-test</artifactId>
   <packaging>jar</packaging>
   <version>@mavenRbcPluginVersion@</version>
   <name>Resource Bundle Report Test</name>
@@ -27,7 +27,7 @@
     <plugins>
       <plugin>
         <groupId>net.metacube.maven</groupId>
-        <artifactId>maven-rbc-plugin</artifactId>
+        <artifactId>rbc-maven-plugin</artifactId>
         <version>@mavenRbcPluginVersion@</version>
       </plugin>
       <plugin>
@@ -50,7 +50,7 @@
     <plugins>
       <plugin>
         <groupId>net.metacube.maven</groupId>
-        <artifactId>maven-rbc-plugin</artifactId>
+        <artifactId>rbc-maven-plugin</artifactId>
         <version>@mavenRbcPluginVersion@</version>
       </plugin>
     </plugins>
