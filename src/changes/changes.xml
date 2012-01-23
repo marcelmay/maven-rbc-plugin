@@ -12,7 +12,13 @@
     <title>Changes</title>
   </properties>
   <body>
-    <release version="0.6" date="??.??.2011" description="Release 0.6">
+    <release version="0.6" date="??.??.2012" description="Release 0.6">
+      <action type="fix" dev="mm" issue="1">
+        Fix plugin artifact name: Renamed to rbc-maven-plugin, for Maven compliance.
+      </action>
+      <action type="update" dev="mm">
+        Updated to gmaven 1.4 
+      </action>
       <action type="update" dev="mm">
         Switched to <![CDATA[<a href="http://maven.apache.org/skins/maven-fluido-skin/">fluido</a>]]> skin.
       </action>
