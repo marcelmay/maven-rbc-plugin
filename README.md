@@ -1,7 +1,7 @@
 Maven Resource Bundle Check Plugin
 ==================================
 
-Historical note: This plugin used to be called *maven-rbc-plugin* (see maven-rbc-plugin#1 ).
+*Historical note: This plugin used to be called [maven-rbc-plugin](https://github.com/marcelmay/maven-rbc-plugin/issues/1)*
 
 The resource bundle check plugin *rbc-maven-plugin* runs some checks on your resource files using underneath the [ResourceCheck Ant task][rscbundlecheck.sf.net].
 
