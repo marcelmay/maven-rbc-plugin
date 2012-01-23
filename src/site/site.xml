@@ -7,6 +7,16 @@
     <artifactId>maven-fluido-skin</artifactId>
     <version>1.1</version>
   </skin>
+  <custom>
+    <fluidoSkin>
+      <gitHub>
+        <projectId>marcelmay/maven-rbc-plugin</projectId>
+        <ribbonOrientation>right</ribbonOrientation>
+        <ribbonColor>black</ribbonColor>
+      </gitHub>
+    </fluidoSkin>
+  </custom>
+ 
   <bannerLeft>
     <name>Maven Resource Bundle Check Plugin</name>
     <src>maven-rbc-plugin.png</src>
