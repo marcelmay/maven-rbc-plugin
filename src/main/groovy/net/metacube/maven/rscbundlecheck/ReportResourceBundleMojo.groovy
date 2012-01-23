@@ -277,7 +277,7 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
     sink.paragraph()
     sink.text(pResBundle.getString('report.rbc.link') + ' ')
     sink.link('http://labs.consol.de/projects/maven/maven-rbc-plugin/')
-    sink.text 'maven-rbc-plugin'
+    sink.text 'rbc-maven-plugin'
     sink.link_()
     sink.text('.')
 
