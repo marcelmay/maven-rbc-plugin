@@ -1,7 +1,9 @@
 Maven Resource Bundle Check Plugin
 ==================================
 
-The resource bundle check plugin runs some checks on your resource files using underneath the [ResourceCheck Ant task][rscbundlecheck.sf.net].
+Historical note: This plugin used to be called *maven-rbc-plugin* (see #1).
+
+The resource bundle check plugin *rbc-maven-plugin* runs some checks on your resource files using underneath the [ResourceCheck Ant task][rscbundlecheck.sf.net].
 
 
 What is it good for?
@@ -25,7 +27,7 @@ Development
 
     mvn clean install
 
-  Make sure you got [Maven 3.0.3][maven_download] or higher.
+  Make sure you got [Maven 3.0.3+][maven_download] or higher.
 
 * Build the site (and the optional example report)
 
