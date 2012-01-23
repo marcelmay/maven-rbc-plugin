@@ -25,7 +25,7 @@
 
   <issueManagement>
     <system>github</system>
-    <url>https://github.com/marcelmay/maven-rbc-plugin/issues</url>
+    <url>https://github.com/marcelmay/maven-rbc-plugin/issues/</url>
   </issueManagement>
 
   <licenses>
