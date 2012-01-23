@@ -16,13 +16,13 @@ class BundleScannerTest {
     // Bundles
     assert scanner.size() == 6
     assert scanner.bundles.size() == 6
-    assert scanner.bundles.basename == [
-            'net/metacube/maven/maven-rbc-plugin/test/test1',
-            'net/metacube/maven/maven-rbc-plugin/test/test2',
-            'net/metacube/maven/maven-rbc-plugin/foo/more',
-            'net/metacube/maven/maven-rbc-plugin/foo/bar/some',
-            'net/metacube/maven/maven-rbc-plugin/test3',
-            'net/metacube/maven/maven-rbc-plugin/test4']
+    assert scanner.bundles.basename.sort() == [
+            'net/metacube/maven/rbc-maven-plugin/test/test1',
+            'net/metacube/maven/rbc-maven-plugin/test/test2',
+            'net/metacube/maven/rbc-maven-plugin/foo/more',
+            'net/metacube/maven/rbc-maven-plugin/foo/bar/some',
+            'net/metacube/maven/rbc-maven-plugin/test3',
+            'net/metacube/maven/rbc-maven-plugin/test4'].sort()
 
     // Locales
     assert scanner.locales.size() == 3
