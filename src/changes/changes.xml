@@ -12,7 +12,10 @@
     <title>Changes</title>
   </properties>
   <body>
-    <release version="0.6" date="??.??.2012" description="Release 0.6">
+    <release version="0.6" date="06.07.2012" description="Release 0.6">
+      <action type="update" dev="mm">
+        Updated ant to 1.8.4
+      </action>
       <action type="fix" dev="mm" issue="1">
         Fix plugin artifact name: Renamed to rbc-maven-plugin, for Maven compliance.
       </action>
