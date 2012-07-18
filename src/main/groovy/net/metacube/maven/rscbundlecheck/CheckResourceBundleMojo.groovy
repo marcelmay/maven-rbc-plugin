@@ -133,9 +133,9 @@ public class CheckResourceBundleMojo extends GroovyMojo {
 
   Map<Bundle, List<Issue>> executeChecks() {
     // Scan for bundles
-    BundleScanner bScanner = new BundleScanner()
+    BundleScanner bScanner = new BundleScanner(log: log, rootDir: project.basedir)
     bScanner.scan(fileset)
-    log.info "Found ${bScanner.size()} bundles"
+    log.info "Found ${bScanner.size()} bundle(s)"
     if (log.isDebugEnabled()) {
       bScanner.getBundles().each { log.debug it.toString() }
     }
@@ -155,6 +155,7 @@ public class CheckResourceBundleMojo extends GroovyMojo {
     BundleChecker bc = new BundleChecker(log: log)
     bc.add(new RscBundleCheckWrapper(log: log,
             fileset: fileset,
+            location: pScanner.rootDir,
             sortResult: sortResult,
             verbose: verbose,
             failOnError: false, // Handle failure at mojo level

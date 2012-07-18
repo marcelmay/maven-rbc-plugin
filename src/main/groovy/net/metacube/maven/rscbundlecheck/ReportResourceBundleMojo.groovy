@@ -348,7 +348,7 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
 
   Map<Bundle, List<Issue>> executeChecks() {
     // Scan for bundles
-    BundleScanner bScanner = new BundleScanner()
+    BundleScanner bScanner = new BundleScanner(log: log, rootDir: project.basedir)
     bScanner.scan(fileset)
     log.info "Found ${bScanner.size()} bundles"
     if (log.isDebugEnabled()) {
@@ -370,6 +370,7 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
     BundleChecker bc = new BundleChecker(log: log)
     bc.add(new RscBundleCheckWrapper(log: log,
             fileset: fileset,
+            location: pScanner.rootDir,
             sortResult: sortResult,
             verbose: verbose,
             failOnError: false, // Handle failure at mojo level

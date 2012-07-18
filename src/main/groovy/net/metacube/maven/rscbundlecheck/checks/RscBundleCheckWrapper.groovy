@@ -21,6 +21,8 @@ import org.dyndns.fichtner.rsccheck.engine.*
  */
 public class RscBundleCheckWrapper extends AbstractBundleCheck {
   FileSet fileset
+  /** Location of fileset directory, typically the project or module location */
+  File location
   /** sort result (line numbers)      */
   boolean sortResult = true
   /** Flag if this task should be verbose or not      */
@@ -38,6 +40,16 @@ public class RscBundleCheckWrapper extends AbstractBundleCheck {
 
   RscBundleCheckWrapper init() {
     checks.clear()
+
+    // Copy-and-modify fileset for location, if not absolut
+    if (fileset.directory.charAt(0)!=File.separatorChar) {
+      FileSet orgFileSet = fileset
+      fileset = new FileSet()
+      fileset.directory = new File(location, orgFileSet.directory)
+      fileset.setIncludes(orgFileSet.getIncludes())
+      fileset.setExcludes(orgFileSet.getExcludes())
+    }
+
     checks.add(createChecks())
     log.info('Enabled checks: ' + checks)
     this

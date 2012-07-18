@@ -10,7 +10,7 @@ class BundleScannerTest {
     fs.setDirectory '../src/it/report-goal/src/main/resources'
     fs.addInclude '**/*.properties'
 
-    def scanner = new BundleScanner()
+    def scanner = new BundleScanner(rootDir: new File('.'))
     scanner.scan fs
 
     // Bundles

@@ -13,6 +13,11 @@
   </properties>
   <body>
     <release version="0.6" date="?.?.2012" description="Release 0.6">
+      <action type="fix" dev="mm" issue="3">
+        Build does not fail when failOnError is set true.
+        As suspected, this is a multi module build bug.
+        Special thx to Fernando Dourado for reporting and help.
+      </action>
       <action type="fix" dev="mm" issue="4">
         Unable to build from source. Special thx to Fernando Dourado for reporting and help.
       </action>

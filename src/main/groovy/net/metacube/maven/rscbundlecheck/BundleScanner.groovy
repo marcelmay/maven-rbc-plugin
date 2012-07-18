@@ -4,6 +4,8 @@ import org.apache.maven.model.FileSet
 import org.codehaus.plexus.util.FileUtils
 import java.util.regex.Pattern
 import java.util.regex.Matcher
+import org.apache.maven.plugin.logging.Log
+import org.apache.maven.plugin.MojoExecutionException
 
 /**
  * Scans for bundles.
@@ -15,13 +17,21 @@ class BundleScanner {
   Map<String, Bundle> bundles = new HashMap()
   Set locales = new HashSet()
   String dir
+  Log log
+  File rootDir
 
   Collection<Bundle> scan(FileSet pFileSet) {
     // Build a scanner
-    def dirFile = new File(pFileSet.directory)
+    // Prefix rootDir only if not absolute
+    def dirFile = pFileSet.directory.charAt(0)==File.separatorChar ? new File(pFileSet.directory) : new File(rootDir, pFileSet.directory)
     dir = dirFile.getAbsolutePath()
+    if(log?.isDebugEnabled()) {
+      log.debug("Scanning directory "+dir+' using includes=['+pFileSet.includes.join(', ')+'] and excludes=['+pFileSet.excludes.join(', ')+']')
+    }
     if (dirFile.exists() && dirFile.isDirectory()) {
       FileUtils.getFiles(dirFile, pFileSet.includes.join(','), pFileSet.excludes.join(',')).each { processFile(it) }
+    } else {
+      log?.warn('Directory '+dirFile+' does not exist or is no directory')
     }
     return bundles.values()
   }
@@ -32,7 +42,6 @@ class BundleScanner {
   void processFile(File pFile) {
     String relativeResourcePath = pFile.getAbsolutePath().substring(dir.length() + 1)
     String fp = FileUtils.removeExtension(relativeResourcePath)
-    String fn = FileUtils.removeExtension(pFile.getName())
 
     String locale
     Matcher matcher = LANG_COUNTRY_PATTERN.matcher(fp)
@@ -47,13 +56,12 @@ class BundleScanner {
 
     if(null!=locale) {
       locales.add(locale)
-      fn = fn.substring(0,fn.length()-locale.length()-1)
       fp = fp.substring(0,fp.length()-locale.length()-1)
     }
 
     Bundle b = bundles.get(fp)
     if (null == b) {
-      b = new Bundle(basename: fp)
+      b = new Bundle(basename: fp, location: new File(pFile.getAbsolutePath().substring(0,fp.size())))
       bundles.put(fp, b)
     }
     if(null!=locale) {
