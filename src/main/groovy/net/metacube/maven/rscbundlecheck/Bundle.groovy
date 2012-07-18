@@ -10,9 +10,11 @@ public class Bundle implements Comparable {
   String basename
   Set<String> files = new HashSet()
   Set<String> locales = new HashSet()
+  /** Directory for bundle, eg '/.../src/main/resources' */
+  File location
 
   public String toString() {
-    '{basename='+basename+', files='+files+', locales='+locales+'}'
+    '{basename='+basename+', location='+location+', files='+files+', locales='+locales+'}'
   }
 
   int compareTo(Object o) {
