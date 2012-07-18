@@ -5,6 +5,7 @@ import net.metacube.maven.rscbundlecheck.checks.RscBundleCheckWrapper
 import org.apache.maven.model.FileSet
 import org.apache.maven.project.MavenProject
 import org.codehaus.gmaven.mojo.GroovyMojo
+import org.apache.maven.plugin.MojoExecutionException
 
 /**
  * Runs the bundle checks.
@@ -110,7 +111,8 @@ public class CheckResourceBundleMojo extends GroovyMojo {
   }
 
   def processCheckResults(Map<Bundle, List<Issue>> pBundleIssues) {
-    log.info 'Found ' + pBundleIssues.collect {it.value}.flatten().size + ' issue(s) in ' + pBundleIssues.size() + ' bundle(s)'
+    int numberOfIssues = pBundleIssues.collect {it.value}.flatten().size
+    log.info 'Found ' + numberOfIssues + ' issue(s) in ' + pBundleIssues.size() + ' bundle(s)'
     pBundleIssues.each {
       if (it.value.isEmpty()) {
         if (log.isDebugEnabled()) {
@@ -122,6 +124,10 @@ public class CheckResourceBundleMojo extends GroovyMojo {
         it.value.each {issue -> log.warn(' - ' + issue.description)
         }
       }
+    }
+    if(failOnError && numberOfIssues>0) {
+      throw new MojoExecutionException(
+              'Found '+numberOfIssues+' issue(s). Change \'failOnError\' plugin configuration, or fix reported issues.')
     }
   }
 
@@ -151,7 +157,7 @@ public class CheckResourceBundleMojo extends GroovyMojo {
             fileset: fileset,
             sortResult: sortResult,
             verbose: verbose,
-            failOnError: failOnError,
+            failOnError: false, // Handle failure at mojo level
             enabledChecks: enabledChecks,
             disabledChecks: disabledChecks).init())
     if (warnOnIncompleteBundle) {

@@ -6,6 +6,7 @@ import org.apache.maven.doxia.siterenderer.Renderer
 import org.apache.maven.model.FileSet
 import org.apache.maven.project.MavenProject
 import org.apache.maven.reporting.AbstractMavenReport
+import org.apache.maven.plugin.MojoExecutionException
 
 /**
  * Creates a report for the check results.
@@ -122,6 +123,21 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
 
   protected void executeReport(Locale pLocale) {
     Map<Bundle, List<Issue>> bundleIssues = new TreeMap(executeChecks())
+    int numberOfIssues = bundleIssues.collect {it.value}.flatten().size
+    log.info 'Found ' + numberOfIssues + ' issue(s) in ' + bundleIssues.size() + ' bundle(s)'
+    bundleIssues.each {
+      if (it.value.isEmpty()) {
+        if (log.isDebugEnabled()) {
+          log.debug 'Bundle ' + it.key.basename + ' is fine'
+        }
+      }
+      else {
+        log.warn 'Bundle ' + it.key.basename + ' has ' + it.value.size() + ' issue(s):'
+        it.value.each {issue -> log.warn(' - ' + issue.description)
+        }
+      }
+    }
+
     ResourceBundle res = getBundle(pLocale)
 
     doHeading(res)
@@ -133,6 +149,11 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
     doBundleDetailSection(bundleIssues, res)
 
     doFooter()
+
+    if(failOnError && numberOfIssues>0) {
+      throw new MojoExecutionException(
+              'Found '+numberOfIssues+' issue(s). Change \'failOnError\' plugin configuration, or fix reported issues.')
+    }
   }
 
   def doBundleDetailSection(Map<Bundle, List<Issue>> pBundleIssues, ResourceBundle pResBundle) {
@@ -351,7 +372,7 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
             fileset: fileset,
             sortResult: sortResult,
             verbose: verbose,
-            failOnError: failOnError,
+            failOnError: false, // Handle failure at mojo level
             enabledChecks: enabledChecks,
             disabledChecks: disabledChecks).init())
     if (warnOnIncompleteBundle) {
