@@ -14,7 +14,10 @@
     <title>Changes</title>
   </properties>
   <body>
-    <release version="0.6" date="21.07.2012" description="Release 0.6">
+    <release version="0.6" date="23.07.2012" description="Release 0.6">
+      <action type="fix" dev="mm">
+        Report should contain source relative to bundle root, eg src/main/resources.
+      </action>
       <action type="fix" dev="mm" issue="3">
         Build does not fail when failOnError is set true.
         Plugin fails to check and report for multi module builds.

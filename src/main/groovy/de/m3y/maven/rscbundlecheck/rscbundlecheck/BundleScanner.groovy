@@ -60,7 +60,8 @@ class BundleScanner {
 
     Bundle b = bundles.get(fp)
     if (null == b) {
-      b = new Bundle(basename: fp, location: new File(pFile.getAbsolutePath().substring(0,fp.size())))
+      String path = pFile.getCanonicalPath() // Make location relative
+      b = new Bundle(basename: fp, location: new File(path.substring(0, path.size() - fp.size() - '.properties'.size())))
       bundles.put(fp, b)
     }
     if(null!=locale) {
