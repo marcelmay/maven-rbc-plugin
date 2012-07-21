@@ -4,7 +4,7 @@ import de.m3y.maven.rscbundlecheck.rscbundlecheck.checks.AbstractBundleCheck
 import org.apache.maven.plugin.logging.Log
 
 /**
- * Checks a bundle
+ * Performs configured checks on a bundle.
  *
  * @author mm
  */
@@ -19,7 +19,7 @@ public class BundleChecker {
 
   List<Issue> check(Bundle pBundle, List<Issue> pIssues) {
     for (AbstractBundleCheck check: checks) {
-      log.info('Running check ' + check.name)
+      log.info('Running check ' + check.name + ' on bundle ' + pBundle.basename)
       pIssues.addAll(check.check(pBundle))
     }
     return pIssues
