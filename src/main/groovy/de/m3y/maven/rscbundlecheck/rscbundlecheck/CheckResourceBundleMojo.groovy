@@ -6,6 +6,7 @@ import org.apache.maven.model.FileSet
 import org.apache.maven.project.MavenProject
 import org.codehaus.gmaven.mojo.GroovyMojo
 import org.apache.maven.plugin.MojoExecutionException
+import org.apache.maven.plugin.logging.Log
 
 /**
  * Runs the bundle checks.
@@ -112,22 +113,30 @@ public class CheckResourceBundleMojo extends GroovyMojo {
 
   def processCheckResults(Map<Bundle, List<Issue>> pBundleIssues) {
     int numberOfIssues = pBundleIssues.collect {it.value}.flatten().size
-    log.info 'Found ' + numberOfIssues + ' issue(s) in ' + pBundleIssues.size() + ' bundle(s)'
+    printIssues(log, pBundleIssues, numberOfIssues)
+    handleFailOnError(failOnError, numberOfIssues)
+  }
+
+  def static printIssues(Log pLog, Map<Bundle, List<Issue>> pBundleIssues, int pNumberOfIssues) {
+    pLog.info 'Found ' + pNumberOfIssues + ' issue(s) in ' + pBundleIssues.size() + ' bundle(s)'
     pBundleIssues.each {
       if (it.value.isEmpty()) {
-        if (log.isDebugEnabled()) {
-          log.debug 'Bundle ' + it.key.basename + ' is fine'
+        if (pLog.isDebugEnabled()) {
+          pLog.debug 'Bundle ' + it.key.basename + ' is fine'
         }
       }
       else {
-        log.warn 'Bundle ' + it.key.basename + ' has ' + it.value.size() + ' issue(s):'
-        it.value.each {issue -> log.warn(' - ' + issue.description)
+        pLog.warn 'Bundle ' + it.key.basename + ' has ' + it.value.size() + ' issue(s):'
+        it.value.each {issue -> pLog.warn(' - ' + issue.description)
         }
       }
     }
-    if(failOnError && numberOfIssues>0) {
+
+  }
+  def static handleFailOnError(boolean pFailOnError, int pNumberOfIssues) {
+    if(pFailOnError && pNumberOfIssues>0) {
       throw new MojoExecutionException(
-              'Found '+numberOfIssues+' issue(s). Change \'failOnError\' plugin configuration, or fix reported issues.')
+              'Found '+pNumberOfIssues+' issue(s). Change \'failOnError\' plugin configuration, or fix reported issues.')
     }
   }
 

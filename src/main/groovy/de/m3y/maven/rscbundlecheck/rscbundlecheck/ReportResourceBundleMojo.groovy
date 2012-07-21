@@ -124,19 +124,7 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
   protected void executeReport(Locale pLocale) {
     Map<Bundle, List<Issue>> bundleIssues = new TreeMap(executeChecks())
     int numberOfIssues = bundleIssues.collect {it.value}.flatten().size
-    log.info 'Found ' + numberOfIssues + ' issue(s) in ' + bundleIssues.size() + ' bundle(s)'
-    bundleIssues.each {
-      if (it.value.isEmpty()) {
-        if (log.isDebugEnabled()) {
-          log.debug 'Bundle ' + it.key.basename + ' is fine'
-        }
-      }
-      else {
-        log.warn 'Bundle ' + it.key.basename + ' has ' + it.value.size() + ' issue(s):'
-        it.value.each {issue -> log.warn(' - ' + issue.description)
-        }
-      }
-    }
+    CheckResourceBundleMojo.printIssues(log, bundleIssues, numberOfIssues)
 
     ResourceBundle res = getBundle(pLocale)
 
@@ -150,10 +138,7 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
 
     doFooter()
 
-    if(failOnError && numberOfIssues>0) {
-      throw new MojoExecutionException(
-              'Found '+numberOfIssues+' issue(s). Change \'failOnError\' plugin configuration, or fix reported issues.')
-    }
+    CheckResourceBundleMojo.handleFailOnError(failOnError, numberOfIssues)
   }
 
   def doBundleDetailSection(Map<Bundle, List<Issue>> pBundleIssues, ResourceBundle pResBundle) {
