@@ -42,7 +42,7 @@ class BundleScanner {
     String relativeResourcePath = pFile.getAbsolutePath().substring(dir.length() + 1)
     String fp = FileUtils.removeExtension(relativeResourcePath)
 
-    String locale
+    String locale = null
     Matcher matcher = LANG_COUNTRY_PATTERN.matcher(fp)
     if(matcher.matches()) {
       locale = matcher.group(3)
