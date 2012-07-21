@@ -1,7 +1,7 @@
-package net.metacube.maven.rscbundlecheck
+package de.m3y.maven.rscbundlecheck.rscbundlecheck
 
-import net.metacube.maven.rscbundlecheck.checks.IncompleteResourceBundleCheck
-import net.metacube.maven.rscbundlecheck.checks.RscBundleCheckWrapper
+import de.m3y.maven.rscbundlecheck.rscbundlecheck.checks.IncompleteResourceBundleCheck
+import de.m3y.maven.rscbundlecheck.rscbundlecheck.checks.RscBundleCheckWrapper
 import org.apache.maven.model.FileSet
 import org.apache.maven.project.MavenProject
 import org.codehaus.gmaven.mojo.GroovyMojo
@@ -62,7 +62,7 @@ public class CheckResourceBundleMojo extends GroovyMojo {
    * &lt;fileset&gt;
    *   &lt;directory&gt;src/main/resources&lt;/directory&gt;
    *   &lt;includes&gt;
-   *     &lt;include&gt;net/metacube/example/project/&#42;&#42;/&#42;.properties&lt;/include&gt;
+   *     &lt;include&gt;de/m3y/example/project/&#42;&#42;/&#42;.properties&lt;/include&gt;
    *   &lt;/includes&gt;
    * &lt;/fileset&gt;
    * </code></pre>

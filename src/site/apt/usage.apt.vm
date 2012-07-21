@@ -34,7 +34,7 @@ Using the Maven Resource Bundle Check Plugin
   <plugins>
     ...
     <plugin>
-      <groupId>net.metacube.maven</groupId>
+      <groupId>de.m3y.maven</groupId>
       <artifactId>rbc-maven-plugin</artifactId>
       <version>${project.version}</version>
     </plugin>
@@ -60,7 +60,7 @@ Using the Maven Resource Bundle Check Plugin
   ...
   <plugins>
     <plugin>
-      <groupId>net.metacube.maven</groupId>
+      <groupId>de.m3y.maven</groupId>
       <artifactId>rbc-maven-plugin</artifactId>
       <version>${project.version}</version>
     </plugin>

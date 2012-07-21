@@ -1,4 +1,4 @@
-package net.metacube.maven.rscbundlecheck
+package de.m3y.maven.rscbundlecheck.rscbundlecheck
 
 /**
  * Holds a check issue.

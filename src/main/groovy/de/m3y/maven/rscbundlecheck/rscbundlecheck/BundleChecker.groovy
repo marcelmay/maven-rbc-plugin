@@ -1,6 +1,6 @@
-package net.metacube.maven.rscbundlecheck
+package de.m3y.maven.rscbundlecheck.rscbundlecheck
 
-import net.metacube.maven.rscbundlecheck.checks.AbstractBundleCheck
+import de.m3y.maven.rscbundlecheck.rscbundlecheck.checks.AbstractBundleCheck
 import org.apache.maven.plugin.logging.Log
 
 /**

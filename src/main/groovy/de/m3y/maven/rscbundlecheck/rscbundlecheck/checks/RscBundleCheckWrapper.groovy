@@ -1,7 +1,7 @@
-package net.metacube.maven.rscbundlecheck.checks
+package de.m3y.maven.rscbundlecheck.rscbundlecheck.checks
 
-import net.metacube.maven.rscbundlecheck.Bundle
-import net.metacube.maven.rscbundlecheck.Issue
+import de.m3y.maven.rscbundlecheck.rscbundlecheck.Bundle
+import de.m3y.maven.rscbundlecheck.rscbundlecheck.Issue
 import org.apache.maven.model.FileSet
 import org.apache.maven.plugin.MojoExecutionException
 import org.dyndns.fichtner.rsccheck.ant.AntRscCheckContext

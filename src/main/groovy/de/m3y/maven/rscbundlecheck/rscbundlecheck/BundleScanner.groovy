@@ -1,11 +1,10 @@
-package net.metacube.maven.rscbundlecheck
+package de.m3y.maven.rscbundlecheck.rscbundlecheck
 
 import org.apache.maven.model.FileSet
 import org.codehaus.plexus.util.FileUtils
 import java.util.regex.Pattern
 import java.util.regex.Matcher
 import org.apache.maven.plugin.logging.Log
-import org.apache.maven.plugin.MojoExecutionException
 
 /**
  * Scans for bundles.
