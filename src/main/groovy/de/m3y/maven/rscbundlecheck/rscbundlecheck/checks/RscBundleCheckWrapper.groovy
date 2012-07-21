@@ -85,10 +85,16 @@ public class RscBundleCheckWrapper extends AbstractBundleCheck {
         log.warn 'The check found ' + result.size() + ' error(s) in the resource file(s)'
       }
     }
-    result.collect { ErrorEntry e -> new Issue(check: e.getVisitor().getName(),
-                                               description: e.getMessage(),
-                                               source: e.getBundleReader().getIdentifier(),
-                                               sourceIdx: e.getEntry())}
+    result.collect { ErrorEntry e ->
+      String source = e.getBundleReader().getIdentifier()
+      String location = pBundle.location
+      if (!source?.isEmpty() && !location?.isEmpty() && source.startsWith(location)) {
+        source = source.substring(location.size()+1)
+      }
+      new Issue(check: e.getVisitor().getName(),
+                description: e.getMessage(),
+                source: source,
+                sourceIdx: e.getEntry())}
   }
 
   private Collection<Visitor> createVisitors(VisitorFactory visitorFactory) {
