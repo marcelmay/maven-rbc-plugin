@@ -114,6 +114,17 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
   private String name
 
   /**
+   * The output directory for the report. Note that this parameter is only
+   * evaluated if the goal is run directly from the command line. If the goal
+   * is run indirectly as part of a site generation, the output directory
+   * configured in Maven Site Plugin is used instead.
+   *
+   * @parameter default-value="${project.reporting.outputDirectory}"
+   * @required
+   */
+  private File outputDirectory;
+
+  /**
    * @component
    * @required
    * @readonly
@@ -303,7 +314,12 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
   }
 
   protected String getOutputDirectory() {
-    return getReportOutputDirectory().getAbsolutePath()
+    outputDirectory.getAbsolutePath()
+  }
+
+  public void setReportOutputDirectory( File reportOutputDirectory ) {
+      super.setReportOutputDirectory( reportOutputDirectory );
+      this.outputDirectory = reportOutputDirectory;
   }
 
   protected Renderer getSiteRenderer() {
