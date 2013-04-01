@@ -94,6 +94,11 @@
       <version>3.0</version>
     </dependency>
     <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-sink-api</artifactId>
+      <version>1.2</version> <!-- maven-reporting-api references 1.0, but maven-reporting-impl uses 1.2 -->
+    </dependency>
+    <dependency>
       <groupId>org.apache.maven.reporting</groupId>
       <artifactId>maven-reporting-impl</artifactId>
       <version>2.2</version>
