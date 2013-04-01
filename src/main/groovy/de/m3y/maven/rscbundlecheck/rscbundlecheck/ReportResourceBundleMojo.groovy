@@ -6,7 +6,6 @@ import org.apache.maven.doxia.siterenderer.Renderer
 import org.apache.maven.model.FileSet
 import org.apache.maven.project.MavenProject
 import org.apache.maven.reporting.AbstractMavenReport
-import org.apache.maven.plugin.MojoExecutionException
 
 /**
  * Creates a report for the check results.
@@ -123,7 +122,7 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
 
   protected void executeReport(Locale pLocale) {
     Map<Bundle, List<Issue>> bundleIssues = new TreeMap(executeChecks())
-    int numberOfIssues = bundleIssues.collect {it.value}.flatten().size
+    int numberOfIssues = bundleIssues.collect {it.value}.flatten().size()
     CheckResourceBundleMojo.printIssues(log, bundleIssues, numberOfIssues)
 
     ResourceBundle res = getBundle(pLocale)
@@ -230,7 +229,7 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
     sink.paragraph_()
   }
 
-  def anchorName(String pName) {
+  def private static anchorName(String pName) {
     pName.replace(File.separatorChar as char, '_' as char)
   }
 
@@ -366,4 +365,5 @@ public class ReportResourceBundleMojo extends AbstractMavenReport {
     }
     return bc
   }
+
 }
