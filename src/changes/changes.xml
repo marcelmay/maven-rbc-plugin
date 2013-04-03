@@ -14,6 +14,20 @@
     <title>Changes</title>
   </properties>
   <body>
+    <release version="0.7" date="03.04.2013" description="Release 0.7">
+      <action type="fix" dev="mm" issue="6">
+        Failed to execute goal de.m3y.maven:rbc-maven-plugin ... required class SinkEventAttributes missing
+      </action>
+      <action type="fix" dev="mm" issue="5">
+        Invoking rbc:report leads to stack overflow
+      </action>
+      <action type="update" dev="mm">
+        Updated Ant to 1.9.0
+      </action>
+      <action type="update" dev="mm">
+        Updated gmaven to latest 1.5
+      </action>
+    </release>
     <release version="0.6" date="23.07.2012" description="Release 0.6">
       <action type="fix" dev="mm">
         Report should contain source relative to bundle root, eg src/main/resources.
