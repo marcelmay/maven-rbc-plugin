@@ -3,7 +3,7 @@
   <groupId>de.m3y.maven</groupId>
   <artifactId>rbc-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
-  <version>0.7</version>
+  <version>0.8-SNAPSHOT</version>
   <name>Resource Bundle Check</name>
   <description>Checks resource bundles for integrity</description>
   <url>http://labs.consol.de/projects/maven/maven-rbc-plugin</url>
@@ -21,7 +21,7 @@
     <connection>scm:git:git://github.com/marcelmay/maven-rbc-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:marcelmay/maven-rbc-plugin.git</developerConnection>
     <url>http://labs.consol.de/projects/maven/maven-rbc-plugin</url>
-    <tag>rbc-maven-plugin-0.7</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
