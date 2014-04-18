@@ -14,6 +14,14 @@
     <title>Changes</title>
   </properties>
   <body>
+    <release version="0.8" date="?.?.2014" description="Release 0.8">
+      <action type="update" dev="mm">
+        Updated Ant to 1.9.3
+      </action>
+      <action type="update" dev="mm">
+        Requires now Maven 3.2.x .
+      </action>
+    </release>
     <release version="0.7" date="03.04.2013" description="Release 0.7">
       <action type="fix" dev="mm" issue="6">
         Failed to execute goal de.m3y.maven:rbc-maven-plugin ... required class SinkEventAttributes missing
